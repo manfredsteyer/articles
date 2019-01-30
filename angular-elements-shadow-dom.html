@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <title>Content Projection with Slots in Angular Elements (>=7)</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.css" integrity="sha384-D+9gmBxUQogRLqvARvNLmA9hS2x//eK1FhVb9PiU86gmcrBrJAQT8okdJ4LMp2uv" crossorigin="anonymous">
+        <style>
+/*--------------------------------------------------------------------------------------------- * Copyright (c) Microsoft Corporation. All rights reserved. * Licensed under the MIT License. See License.txt in the project root for license information. *--------------------------------------------------------------------------------------------*/ body { font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback"; font-size: 14px; padding: 0 26px; line-height: 22px; word-wrap: break-word; } #code-csp-warning { position: fixed; top: 0; right: 0; color: white; margin: 16px; text-align: center; font-size: 12px; font-family: sans-serif; background-color:#444444; cursor: pointer; padding: 6px; box-shadow: 1px 1px 1px rgba(0,0,0,.25); } #code-csp-warning:hover { text-decoration: none; background-color:#007acc; box-shadow: 2px 2px 2px rgba(0,0,0,.25); } body.scrollBeyondLastLine { margin-bottom: calc(100vh - 22px); } body.showEditorSelection .code-line { position: relative; } body.showEditorSelection .code-active-line:before, body.showEditorSelection .code-line:hover:before { content: ""; display: block; position: absolute; top: 0; left: -12px; height: 100%; } body.showEditorSelection li.code-active-line:before, body.showEditorSelection li.code-line:hover:before { left: -30px; } .vscode-light.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(0, 0, 0, 0.15); } .vscode-light.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(0, 0, 0, 0.40); } .vscode-light.showEditorSelection .code-line .code-line:hover:before { border-left: none; } .vscode-dark.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 255, 255, 0.4); } .vscode-dark.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 255, 255, 0.60); } .vscode-dark.showEditorSelection .code-line .code-line:hover:before { border-left: none; } .vscode-high-contrast.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 160, 0, 0.7); } .vscode-high-contrast.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 160, 0, 1); } .vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before { border-left: none; } img { max-width: 100%; max-height: 100%; } a { text-decoration: none; } a:hover { text-decoration: underline; } a:focus, input:focus, select:focus, textarea:focus { outline: 1px solid -webkit-focus-ring-color; outline-offset: -1px; } hr { border: 0; height: 2px; border-bottom: 2px solid; } h1 { padding-bottom: 0.3em; line-height: 1.2; border-bottom-width: 1px; border-bottom-style: solid; } h1, h2, h3 { font-weight: normal; } h1 code, h2 code, h3 code, h4 code, h5 code, h6 code { font-size: inherit; line-height: auto; } table { border-collapse: collapse; } table > thead > tr > th { text-align: left; border-bottom: 1px solid; } table > thead > tr > th, table > thead > tr > td, table > tbody > tr > th, table > tbody > tr > td { padding: 5px 10px; } table > tbody > tr + tr > td { border-top: 1px solid; } blockquote { margin: 0 7px 0 5px; padding: 0 16px 0 10px; border-left-width: 5px; border-left-style: solid; } code { font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback"; font-size: 14px; line-height: 19px; } body.wordWrap pre { white-space: pre-wrap; } .mac code { font-size: 12px; line-height: 18px; } pre:not(.hljs), pre.hljs code > div { padding: 16px; border-radius: 3px; overflow: auto; } /** Theming */ pre code { color: var(--vscode-editor-foreground); } .vscode-light pre:not(.hljs), .vscode-light code > div { background-color: rgba(220, 220, 220, 0.4); } .vscode-dark pre:not(.hljs), .vscode-dark code > div { background-color: rgba(10, 10, 10, 0.4); } .vscode-high-contrast pre:not(.hljs), .vscode-high-contrast code > div { background-color: rgb(0, 0, 0); } .vscode-high-contrast h1 { border-color: rgb(0, 0, 0); } .vscode-light table > thead > tr > th { border-color: rgba(0, 0, 0, 0.69); } .vscode-dark table > thead > tr > th { border-color: rgba(255, 255, 255, 0.69); } .vscode-light h1, .vscode-light hr, .vscode-light table > tbody > tr + tr > td { border-color: rgba(0, 0, 0, 0.18); } .vscode-dark h1, .vscode-dark hr, .vscode-dark table > tbody > tr + tr > td { border-color: rgba(255, 255, 255, 0.18); } 
+</style>
+<style>
+/* Tomorrow Theme */ /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */ /* Original theme - https://github.com/chriskempson/tomorrow-theme */ /* Tomorrow Comment */ .hljs-comment, .hljs-quote { color: #8e908c; } /* Tomorrow Red */ .hljs-variable, .hljs-template-variable, .hljs-tag, .hljs-name, .hljs-selector-id, .hljs-selector-class, .hljs-regexp, .hljs-deletion { color: #c82829; } /* Tomorrow Orange */ .hljs-number, .hljs-built_in, .hljs-builtin-name, .hljs-literal, .hljs-type, .hljs-params, .hljs-meta, .hljs-link { color: #f5871f; } /* Tomorrow Yellow */ .hljs-attribute { color: #eab700; } /* Tomorrow Green */ .hljs-string, .hljs-symbol, .hljs-bullet, .hljs-addition { color: #718c00; } /* Tomorrow Blue */ .hljs-title, .hljs-section { color: #4271ae; } /* Tomorrow Purple */ .hljs-keyword, .hljs-selector-tag { color: #8959a8; } .hljs { display: block; overflow-x: auto; color: #4d4d4c; padding: 0.5em; } .hljs-emphasis { font-style: italic; } .hljs-strong { font-weight: bold; }
+</style>
+<style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'HelveticaNeue-Light', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id="content-projection-with-slots-in-angular-elements-7">Content Projection with Slots in Angular Elements (&gt;=7)</h1>
+<blockquote>
+<p>Big thanks to <a href="https://twitter.com/robwormald">Rob Wormald</a> -- the mastermind behind Angular Elements in the Angular Team -- for reviewing this article.</p>
+</blockquote>
+<p>Since Angular 7, we can use <code>slots</code> to project markup into an component's template. These slots have been introduced with Shadow DOM v1 which Angular supports since version 6.1.</p>
+<p>This article shows how to use both, Shadow DOM v1 and <code>slots</code>. For this, it uses a component that shows a diagram:</p>
+<p><img src="https://i.imgur.com/BAx3Tbe.png" alt="Sample component"></p>
+<p>The title, as well as the description and the legend on the bottom can be adjusted using content projection with <code>slots</code>. You can find the <a href="https://github.com/manfredsteyer/angular-elements-dashboard/tree/ng7">source code in my GitHub repo</a> (branch: ng7):</p>
+<p>» <a href="https://github.com/manfredsteyer/angular-elements-dashboard/tree/ng7">Source Code (branch: ng7)</a></p>
+<h2 id="shadow-dom-v1">Shadow DOM v1</h2>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM">Shadow DOM</a> has always been an central concept for Angular Components. By default, Angular emulates this standard which isolates a component's style from other components. The idea is that one component's local styles shall not interfere with other components.</p>
+<p>It's also possible to turn it off or to tell Angular to rely on the Browser's implementation which can provide a better isolation than the emulated one.</p>
+<p>However, until Angular 6.1, Angular supported what's known as Shadow DOM v0. Meanwhile, browser vendors agreed on the revised Version 1 which will be widely implemented. At the time of writing, Chrome, Safari, Firefox and Opera already supported it and the Edge-team was currently implementing it.</p>
+<p>To use Shadow DOM v1 in Angular (&gt;= 6.1), just set the <code>encapsulation</code> property in the <code>Component</code> decorator to the newly introduced value <code>ShadowDom</code>:</p>
+<pre><code class="language-typescript"><div><span class="hljs-meta">@Component</span>({
+  selector: <span class="hljs-string">'app-dashboard-tile'</span>,
+  templateUrl: <span class="hljs-string">'./dashboard-tile.component.html'</span>,
+  encapsulation: ViewEncapsulation.ShadowDom
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> DashboardTileComponent <span class="hljs-keyword">implements</span> OnInit {
+  <span class="hljs-meta">@Input</span>() a: <span class="hljs-built_in">number</span>;
+  <span class="hljs-meta">@Input</span>() b: <span class="hljs-built_in">number</span>;
+  <span class="hljs-meta">@Input</span>() c: <span class="hljs-built_in">number</span>;
+  […]
+} 
+</div></code></pre>
+<p>Don't confuse <code>ViewEncapsulation.ShadowDom</code> with <code>ViewEncapsulation.Native</code> which exists since Angular's first days and leverages Shadow DOM v0.</p>
+<h2 id="slots-for-content-projection">Slots for Content Projection</h2>
+<p>Many Web Components -- or to be more precise, many Custom Elements -- need to be adaptable with some markup passed as the element's content. This is also called content projected because the passed content is projected to different positions of the element's template.</p>
+<p>For this, Shadow DOM v1 introduces the <code>slot</code> element. Each <code>slot</code> marks a position within a template where content can be projected to:</p>
+<pre><code class="language-typescript"><div>&lt;div <span class="hljs-keyword">class</span>=<span class="hljs-string">"card"</span>&gt;
+  &lt;div <span class="hljs-keyword">class</span>=<span class="hljs-string">"header"</span>&gt;
+    &lt;h1 <span class="hljs-keyword">class</span>=<span class="hljs-string">"title"</span>&gt;&lt;slot name=<span class="hljs-string">"title"</span>&gt;Standardwert&lt;<span class="hljs-regexp">/slot&gt;&lt;/</span>h1&gt;
+  &lt;<span class="hljs-regexp">/div&gt;
+  &lt;div class="content"&gt;
+
+    &lt;div style="height:200px"&gt;
+      &lt;ngx-charts-pie-chart [labels]="true" [results]="data"&gt;
+      &lt;/</span>ngx-charts-pie-chart&gt;
+    &lt;<span class="hljs-regexp">/div&gt;
+
+    &lt;p&gt;&lt;slot&gt;Standardwert&lt;/</span>slot&gt;&lt;<span class="hljs-regexp">/p&gt;
+    &lt;i&gt;&lt;slot name="legend"&gt;Standardwert&lt;/</span>slot&gt;&lt;<span class="hljs-regexp">/i&gt;
+    
+  &lt;/</span>div&gt;
+&lt;<span class="hljs-regexp">/div&gt;
+</span></div></code></pre>
+<p>Between the opening and the closing <code>slot</code> tags, we can place some default markup that is shown if the caller does not pass any content for it. There can be one default slot and named ones.</p>
+<p>When calling such a Custom Element, we can use the <code>slot</code> attribute to point to one of the named slots within the component's template:</p>
+<pre><code class="language-html"><div><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-sm-3"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">dashboard-tile</span> <span class="hljs-attr">a</span>=<span class="hljs-string">"10"</span> <span class="hljs-attr">b</span>=<span class="hljs-string">"5"</span> <span class="hljs-attr">c</span>=<span class="hljs-string">"15"</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"title"</span>&gt;</span>Important Stuff<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"legend"</span>&gt;</span>A, B and C show the values of A, B and C.<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    Only believe in statistics you've faked yourself.
+
+  <span class="hljs-tag">&lt;/<span class="hljs-name">dashboard-tile</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</div></code></pre>
+<p>Everything you connect to a slot that way will be projected to it. The rest is put into the default slot.</p>
+<h2 id="accessing-projected-content">Accessing Projected Content</h2>
+<p>For accessing projected content, Angular provides hooks like <code>ngAfterContentChecked</code> or <code>ngAfterContentInit</code> as well as content queries using <code>@ViewChild</code> and <code>@ViewChildren</code>.</p>
+<p>Unfortunately, they don't work with slots. But we can make use of the <code>slotschange</code> event instead:</p>
+<pre><code class="language-html"><div><span class="hljs-tag">&lt;<span class="hljs-name">i</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">slot</span> (<span class="hljs-attr">slotchange</span>)=<span class="hljs-string">"slotChange($event)"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"legend"</span>&gt;</span>No Legend available.<span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span>
+</div></code></pre>
+<p>In the set up event handler, we can grab the projected elements:</p>
+<pre><code class="language-typescript"><div><span class="hljs-meta">@Component</span>({
+  [...]
+  encapsulation: ViewEncapsulation.ShadowDom
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> DashboardTileComponent <span class="hljs-keyword">implements</span> OnInit {
+ 
+  slotChange($event) {
+    <span class="hljs-keyword">const</span> assigned = $event.target.assignedNodes();
+    <span class="hljs-keyword">if</span> (assigned.length &gt; <span class="hljs-number">0</span>) {
+      <span class="hljs-built_in">console</span>.debug(<span class="hljs-string">'shotchange'</span>, assigned[<span class="hljs-number">0</span>]);
+    }
+  }
+
+}
+</div></code></pre>
+
+    </body>
+    </html>

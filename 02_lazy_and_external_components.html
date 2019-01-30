@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-alpha/dist/katex.min.css" integrity="sha384-BTL0nVi8DnMrNdMQZG1Ww6yasK9ZGnUxL1ZWukXQ7fygA1py52yPp9W4wrR00VML" crossorigin="anonymous">
+        <style>
+/*--------------------------------------------------------------------------------------------- * Copyright (c) Microsoft Corporation. All rights reserved. * Licensed under the MIT License. See License.txt in the project root for license information. *--------------------------------------------------------------------------------------------*/ body { font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback"; font-size: 14px; padding: 0 26px; line-height: 22px; word-wrap: break-word; } #code-csp-warning { position: fixed; top: 0; right: 0; color: white; margin: 16px; text-align: center; font-size: 12px; font-family: sans-serif; background-color:#444444; cursor: pointer; padding: 6px; box-shadow: 1px 1px 1px rgba(0,0,0,.25); } #code-csp-warning:hover { text-decoration: none; background-color:#007acc; box-shadow: 2px 2px 2px rgba(0,0,0,.25); } body.scrollBeyondLastLine { margin-bottom: calc(100vh - 22px); } body.showEditorSelection .code-line { position: relative; } body.showEditorSelection .code-active-line:before, body.showEditorSelection .code-line:hover:before { content: ""; display: block; position: absolute; top: 0; left: -12px; height: 100%; } body.showEditorSelection li.code-active-line:before, body.showEditorSelection li.code-line:hover:before { left: -30px; } .vscode-light.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(0, 0, 0, 0.15); } .vscode-light.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(0, 0, 0, 0.40); } .vscode-light.showEditorSelection .code-line .code-line:hover:before { border-left: none; } .vscode-dark.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 255, 255, 0.4); } .vscode-dark.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 255, 255, 0.60); } .vscode-dark.showEditorSelection .code-line .code-line:hover:before { border-left: none; } .vscode-high-contrast.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 160, 0, 0.7); } .vscode-high-contrast.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 160, 0, 1); } .vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before { border-left: none; } img { max-width: 100%; max-height: 100%; } a { text-decoration: none; } a:hover { text-decoration: underline; } a:focus, input:focus, select:focus, textarea:focus { outline: 1px solid -webkit-focus-ring-color; outline-offset: -1px; } hr { border: 0; height: 2px; border-bottom: 2px solid; } h1 { padding-bottom: 0.3em; line-height: 1.2; border-bottom-width: 1px; border-bottom-style: solid; } h1, h2, h3 { font-weight: normal; } h1 code, h2 code, h3 code, h4 code, h5 code, h6 code { font-size: inherit; line-height: auto; } table { border-collapse: collapse; } table > thead > tr > th { text-align: left; border-bottom: 1px solid; } table > thead > tr > th, table > thead > tr > td, table > tbody > tr > th, table > tbody > tr > td { padding: 5px 10px; } table > tbody > tr + tr > td { border-top: 1px solid; } blockquote { margin: 0 7px 0 5px; padding: 0 16px 0 10px; border-left-width: 5px; border-left-style: solid; } code { font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback"; font-size: 14px; line-height: 19px; } body.wordWrap pre { white-space: pre-wrap; } .mac code { font-size: 12px; line-height: 18px; } pre:not(.hljs), pre.hljs code > div { padding: 16px; border-radius: 3px; overflow: auto; } /** Theming */ pre code { color: var(--vscode-editor-foreground); } .vscode-light pre:not(.hljs), .vscode-light code > div { background-color: rgba(220, 220, 220, 0.4); } .vscode-dark pre:not(.hljs), .vscode-dark code > div { background-color: rgba(10, 10, 10, 0.4); } .vscode-high-contrast pre:not(.hljs), .vscode-high-contrast code > div { background-color: rgb(0, 0, 0); } .vscode-high-contrast h1 { border-color: rgb(0, 0, 0); } .vscode-light table > thead > tr > th { border-color: rgba(0, 0, 0, 0.69); } .vscode-dark table > thead > tr > th { border-color: rgba(255, 255, 255, 0.69); } .vscode-light h1, .vscode-light hr, .vscode-light table > tbody > tr + tr > td { border-color: rgba(0, 0, 0, 0.18); } .vscode-dark h1, .vscode-dark hr, .vscode-dark table > tbody > tr + tr > td { border-color: rgba(255, 255, 255, 0.18); } 
+</style>
+<style>
+/* Tomorrow Theme */ /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */ /* Original theme - https://github.com/chriskempson/tomorrow-theme */ /* Tomorrow Comment */ .hljs-comment, .hljs-quote { color: #8e908c; } /* Tomorrow Red */ .hljs-variable, .hljs-template-variable, .hljs-tag, .hljs-name, .hljs-selector-id, .hljs-selector-class, .hljs-regexp, .hljs-deletion { color: #c82829; } /* Tomorrow Orange */ .hljs-number, .hljs-built_in, .hljs-builtin-name, .hljs-literal, .hljs-type, .hljs-params, .hljs-meta, .hljs-link { color: #f5871f; } /* Tomorrow Yellow */ .hljs-attribute { color: #eab700; } /* Tomorrow Green */ .hljs-string, .hljs-symbol, .hljs-bullet, .hljs-addition { color: #718c00; } /* Tomorrow Blue */ .hljs-title, .hljs-section { color: #4271ae; } /* Tomorrow Purple */ .hljs-keyword, .hljs-selector-tag { color: #8959a8; } .hljs { display: block; overflow-x: auto; color: #4d4d4c; padding: 0.5em; } .hljs-emphasis { font-style: italic; } .hljs-strong { font-weight: bold; }
+</style>
+<style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'HelveticaNeue-Light', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id="angular-elements-part-ii-lazy-and-external-web-components">Angular Elements, Part II: Lazy and External Web Components</h1>
+<p>In the <a href="https://www.softwarearchitekt.at/post/2018/07/13/angular-elements-part-i-a-dynamic-dashboard-in-four-steps-with-web-components.aspx">first part of this series</a>, I've shown how to leverage Angular Elements for dynamically adding components to a page. The discussed example dynamically adds tiles to a dashboard.</p>
+<p>In this article, I'm going one step further: I'll extend the shown example by loading the Web Components on demand. For this, I demonstrate two approaches: Lazy Loading and loading external components.</p>
+<!-- Picture -->
+<p>The <a href="https://github.com/manfredsteyer/angular-elements-dashboard">solution</a> can be found in my <a href="https://github.com/manfredsteyer/angular-elements-dashboard">GitHub repo</a>.</p>
+<h2 id="lazy-loading-vs-loading-external-components">Lazy Loading vs. Loading External Components</h2>
+<p>Perhaps you are wondering what the differences between to two outlined approaches -- lazy loading and loading external components -- are.</p>
+<p>Lazy Loading demands on compiling the component and its hosting application together. This allows for optimizations like tree shaking but also limits your possibilities as the application needs to know all possible web components in advance. It's more or less like what you know from the first article. In addition, you have to leverage Angular's and the CLI's features for code splitting and lazy loading.</p>
+<p>On the other side, you could also put your web component and all libraries it depends on -- like <code>@angular/core</code> or <code>@angular/elements</code> -- into one self-contained bundle. After this, you can load this bundle in your host application. This increases bundle sizes but also gives you more flexibility as the host can dynamically load components not known at build time. The upcoming ngIvy compiler will help a lot with shrinking such bundles to a minimum. Also, my simple CLI extension <a href="https://www.npmjs.com/package/ngx-build-plus">ngx-build-plus</a> allows to share common dependencies between different bundles. I will talk about those options in a later blog post.</p>
+<p>Of course, what I'm calling &quot;loading external components&quot; here, is also lazy loading. But as it is not the kind of lazy loading Angular provides out of the box, I've decided to use this paraphrase.</p>
+<h2 id="implementing-lazy-loading-without-the-router">Implementing Lazy Loading (without the Router)</h2>
+<p>Lazy Loading is baked into Angular since its first days. There are low level APIs for it and the router provides a nice abstraction that makes this concept easy to use. However, in the example shown here, using the router is not beneficial because this is not about loading routes but loading some tiles into a dashboard on demand.</p>
+<p>That's why I'm leveraging a quite new feature the CLI provides since version 6. Using it, you can point to specific modules which are split off during bundling. After this, you can make use of the mentioned low level APIs to load those modules on demand.</p>
+<p>To get started, reference the module file(s) with your web components in your <code>angular.json</code>:</p>
+<pre class="hljs"><code><div><span class="hljs-string">"lazyModules"</span>: [
+  <span class="hljs-string">"src/app/lazy-dashboard-tile/lazy-dashboard-tile.module"</span>
+],
+</div></code></pre>
+<p>The next listing shows how you can leverage the <code>NgModuleFactoryLoader</code> to load the bundle:</p>
+<pre class="hljs"><code><div><span class="hljs-meta">@Injectable</span>({
+    providedIn: <span class="hljs-string">'root'</span>
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> LazyDashboardTileService  {
+
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params">
+        <span class="hljs-keyword">private</span> loader: NgModuleFactoryLoader,
+        <span class="hljs-keyword">private</span> injector: Injector
+    </span>) {
+    }
+
+    <span class="hljs-keyword">private</span> moduleRef: NgModuleRef&lt;<span class="hljs-built_in">any</span>&gt;;
+
+    load(): <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">void</span>&gt; {
+        
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.moduleRef) {
+            <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.resolve();
+        }
+
+        <span class="hljs-keyword">const</span> path = <span class="hljs-string">'src/app/lazy-dashboard-tile/lazy-dashboard-tile.module#LazyDashboardTileModule'</span>
+        
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>
+            .loader
+            .load(path)
+            .then(<span class="hljs-function"><span class="hljs-params">moduleFactory</span> =&gt;</span> {
+                <span class="hljs-keyword">this</span>.moduleRef = moduleFactory.create(<span class="hljs-keyword">this</span>.injector).instance;
+                <span class="hljs-built_in">console</span>.debug(<span class="hljs-string">'moduleRef'</span>, <span class="hljs-keyword">this</span>.moduleRef);
+            })
+            .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
+                <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'error loading module'</span>, err); 
+            });
+        
+    }
+}
+</div></code></pre>
+<p>For the sake of simplicity, I'm not taking care of every possible race condition. As with the router, you have to provide a string with both, the filename of the module as well as the name of the module class. After loading it, you have to instantiate the module with <code>create</code>.</p>
+<p>After this, you could search this instance for components, services etc. However, this is not easy due to the lack of respective APIs. The good message is that you don't have to this when going with web components: As they directly register with the browser, all you need is to create html elements with the right names. For instance, the next listing creates a <code>lazy-dashboard-tile</code> element:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> tile = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'lazy-dashboard-tile'</span>);
+tile.setAttribute(<span class="hljs-string">'class'</span>, <span class="hljs-string">'col-lg-4 col-md-3 col-sm-2'</span>);
+tile.setAttribute(<span class="hljs-string">'a'</span>, <span class="hljs-string">'100'</span>);
+tile.setAttribute(<span class="hljs-string">'b'</span>, <span class="hljs-string">'50'</span>);
+tile.setAttribute(<span class="hljs-string">'c'</span>, <span class="hljs-string">'25'</span>);
+
+<span class="hljs-keyword">const</span> content = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'content'</span>);
+content.appendChild(tile);
+</div></code></pre>
+<p>Also, you have to make sure that the web components are registered when the module is loaded. To achieve that, you could put the necessary code into the module's constructor:</p>
+<pre class="hljs"><code><div><span class="hljs-meta">@NgModule</span>({
+  […],
+  declarations: [
+    […]
+    DashboardTileComponent
+  ],
+  entryComponents: [
+    DashboardTileComponent
+  ]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> DashboardModule { 
+
+  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> injector: Injector</span>) {
+
+    <span class="hljs-keyword">const</span> tileCE = createCustomElement(DashboardTileComponent, { injector: <span class="hljs-keyword">this</span>.injector });
+    customElements.define(<span class="hljs-string">'dashboard-tile'</span>, tileCE);
+
+  }
+
+}
+</div></code></pre>
+<p>Don't forget to put the component in question not only into the module's <code>declarations</code> section but also into its <code>entryComponents</code> array.</p>
+<h2 id="loading-external-components">Loading External Components</h2>
+<p>For providing an external Web Component, you can just scaffold a new Angular application and make sure the Angular Element is registered when it starts up. For this, I'm using the <code>AppModule</code>'s <code>ngDoBootstrap</code> method:</p>
+<pre class="hljs"><code><div><span class="hljs-meta">@NgModule</span>({
+   […],
+   declarations: [
+       ExternalDashboardTileComponent
+   ],
+   bootstrap: [],
+   entryComponents: [
+       ExternalDashboardTileComponent
+   ]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AppModule { 
+
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> injector: Injector</span>) {
+    }
+
+    ngDoBootstrap() {
+        <span class="hljs-keyword">const</span> externalTileCE = createCustomElement(ExternalDashboardTileComponent, { injector: <span class="hljs-keyword">this</span>.injector });
+        customElements.define(<span class="hljs-string">'external-dashboard-tile'</span>, externalTileCE);
+    }
+
+}
+</div></code></pre>
+<p>Please also note that this example doesn't define an <code>bootstrap</code> component. The reason is, I don't want to load an Angular Component on startup but just register a web component. To test this component, just call the web component directly in your <code>index.html</code> and <code>ng serve</code> your project:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">external-dashboard-tile</span> <span class="hljs-attr">a</span>=<span class="hljs-string">"50"</span> <span class="hljs-attr">b</span>=<span class="hljs-string">"60"</span> <span class="hljs-attr">c</span>=<span class="hljs-string">"70"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">external-dashboard-tile</span>&gt;</span>
+</div></code></pre>
+<p>For publishing our web components, we need one self-contained bundle that can be loaded into a host application. However, the current version of the CLI always creates several bundles. To solve this, we can use <a href="https://www.npmjs.com/package/ngx-build-plus">ngx-build-plus</a> -- a simple extension for the CLI:</p>
+<pre><code>npm i ngx-build-plus --save-dev
+</code></pre>
+<p>After installing it, update your application's <code>builder</code> section within the <code>angular.json</code> file so that it points to <code>ngx-build-plus</code>:</p>
+<pre class="hljs"><code><div><span class="hljs-string">"builder"</span>: <span class="hljs-string">"ngx-build-plus:build"</span>,
+</div></code></pre>
+<p>After building your application, you should end up with one self-contained main bundle. In addition, you might also get other bundles, e. g. bundles with external scripts or polyfills. But everything you directly need to run your web component -- your code and the libraries it depends on -- ends up in the main bundle.</p>
+<p>In the example shown here, I'm using a build task in my <code>package.json</code> for coping over this bundle into the host's <code>assets</code> folder.</p>
+<p>To dynamically load the web component into the host, you just need some DOM manipulations to create a respective <code>script</code> tag as well as a tag for the component itself:</p>
+<pre class="hljs"><code><div><span class="hljs-comment">// add script tag</span>
+<span class="hljs-keyword">const</span> script = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'script'</span>);
+script.src = <span class="hljs-string">'assets/external-dashboard-tile.bundle.js'</span>;
+<span class="hljs-built_in">document</span>.body.appendChild(script);
+
+<span class="hljs-comment">// add web component</span>
+<span class="hljs-keyword">const</span> tile = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'dashboard-tile'</span>);
+tile.setAttribute(<span class="hljs-string">'class'</span>, <span class="hljs-string">'col-lg-4 col-md-3 col-sm-2'</span>);
+tile.setAttribute(<span class="hljs-string">'a'</span>, <span class="hljs-string">'100'</span>);
+tile.setAttribute(<span class="hljs-string">'b'</span>, <span class="hljs-string">'50'</span>);
+tile.setAttribute(<span class="hljs-string">'c'</span>, <span class="hljs-string">'25'</span>);
+
+<span class="hljs-keyword">const</span> content = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'content'</span>);
+content.appendChild(tile);
+</div></code></pre>
+
+    </body>
+    </html>

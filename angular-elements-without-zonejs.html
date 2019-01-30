@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-alpha/dist/katex.min.css" integrity="sha384-BTL0nVi8DnMrNdMQZG1Ww6yasK9ZGnUxL1ZWukXQ7fygA1py52yPp9W4wrR00VML" crossorigin="anonymous">
+        <style>
+/*--------------------------------------------------------------------------------------------- * Copyright (c) Microsoft Corporation. All rights reserved. * Licensed under the MIT License. See License.txt in the project root for license information. *--------------------------------------------------------------------------------------------*/ body { font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback"; font-size: 14px; padding: 0 26px; line-height: 22px; word-wrap: break-word; } #code-csp-warning { position: fixed; top: 0; right: 0; color: white; margin: 16px; text-align: center; font-size: 12px; font-family: sans-serif; background-color:#444444; cursor: pointer; padding: 6px; box-shadow: 1px 1px 1px rgba(0,0,0,.25); } #code-csp-warning:hover { text-decoration: none; background-color:#007acc; box-shadow: 2px 2px 2px rgba(0,0,0,.25); } body.scrollBeyondLastLine { margin-bottom: calc(100vh - 22px); } body.showEditorSelection .code-line { position: relative; } body.showEditorSelection .code-active-line:before, body.showEditorSelection .code-line:hover:before { content: ""; display: block; position: absolute; top: 0; left: -12px; height: 100%; } body.showEditorSelection li.code-active-line:before, body.showEditorSelection li.code-line:hover:before { left: -30px; } .vscode-light.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(0, 0, 0, 0.15); } .vscode-light.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(0, 0, 0, 0.40); } .vscode-light.showEditorSelection .code-line .code-line:hover:before { border-left: none; } .vscode-dark.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 255, 255, 0.4); } .vscode-dark.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 255, 255, 0.60); } .vscode-dark.showEditorSelection .code-line .code-line:hover:before { border-left: none; } .vscode-high-contrast.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 160, 0, 0.7); } .vscode-high-contrast.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 160, 0, 1); } .vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before { border-left: none; } img { max-width: 100%; max-height: 100%; } a { text-decoration: none; } a:hover { text-decoration: underline; } a:focus, input:focus, select:focus, textarea:focus { outline: 1px solid -webkit-focus-ring-color; outline-offset: -1px; } hr { border: 0; height: 2px; border-bottom: 2px solid; } h1 { padding-bottom: 0.3em; line-height: 1.2; border-bottom-width: 1px; border-bottom-style: solid; } h1, h2, h3 { font-weight: normal; } h1 code, h2 code, h3 code, h4 code, h5 code, h6 code { font-size: inherit; line-height: auto; } table { border-collapse: collapse; } table > thead > tr > th { text-align: left; border-bottom: 1px solid; } table > thead > tr > th, table > thead > tr > td, table > tbody > tr > th, table > tbody > tr > td { padding: 5px 10px; } table > tbody > tr + tr > td { border-top: 1px solid; } blockquote { margin: 0 7px 0 5px; padding: 0 16px 0 10px; border-left-width: 5px; border-left-style: solid; } code { font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback"; font-size: 14px; line-height: 19px; } body.wordWrap pre { white-space: pre-wrap; } .mac code { font-size: 12px; line-height: 18px; } pre:not(.hljs), pre.hljs code > div { padding: 16px; border-radius: 3px; overflow: auto; } /** Theming */ pre code { color: var(--vscode-editor-foreground); } .vscode-light pre:not(.hljs), .vscode-light code > div { background-color: rgba(220, 220, 220, 0.4); } .vscode-dark pre:not(.hljs), .vscode-dark code > div { background-color: rgba(10, 10, 10, 0.4); } .vscode-high-contrast pre:not(.hljs), .vscode-high-contrast code > div { background-color: rgb(0, 0, 0); } .vscode-high-contrast h1 { border-color: rgb(0, 0, 0); } .vscode-light table > thead > tr > th { border-color: rgba(0, 0, 0, 0.69); } .vscode-dark table > thead > tr > th { border-color: rgba(255, 255, 255, 0.69); } .vscode-light h1, .vscode-light hr, .vscode-light table > tbody > tr + tr > td { border-color: rgba(0, 0, 0, 0.18); } .vscode-dark h1, .vscode-dark hr, .vscode-dark table > tbody > tr + tr > td { border-color: rgba(255, 255, 255, 0.18); } 
+</style>
+<style>
+/* Tomorrow Theme */ /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */ /* Original theme - https://github.com/chriskempson/tomorrow-theme */ /* Tomorrow Comment */ .hljs-comment, .hljs-quote { color: #8e908c; } /* Tomorrow Red */ .hljs-variable, .hljs-template-variable, .hljs-tag, .hljs-name, .hljs-selector-id, .hljs-selector-class, .hljs-regexp, .hljs-deletion { color: #c82829; } /* Tomorrow Orange */ .hljs-number, .hljs-built_in, .hljs-builtin-name, .hljs-literal, .hljs-type, .hljs-params, .hljs-meta, .hljs-link { color: #f5871f; } /* Tomorrow Yellow */ .hljs-attribute { color: #eab700; } /* Tomorrow Green */ .hljs-string, .hljs-symbol, .hljs-bullet, .hljs-addition { color: #718c00; } /* Tomorrow Blue */ .hljs-title, .hljs-section { color: #4271ae; } /* Tomorrow Purple */ .hljs-keyword, .hljs-selector-tag { color: #8959a8; } .hljs { display: block; overflow-x: auto; color: #4d4d4c; padding: 0.5em; } .hljs-emphasis { font-style: italic; } .hljs-strong { font-weight: bold; }
+</style>
+<style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'HelveticaNeue-Light', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id="angular-elements-without-zonejs">Angular Elements without zone.js</h1>
+<p>Since Version 6, we can very easily create Web Components with Angular. To be more precise, we should speak about Custom Elements -- a standard behind the umbrella term Web Components that allows for creating own HTML-Elements.</p>
+<p>However, Angular depends on zone.js for Change Tracking and in most cases we don't want to force the customers of our widgets into using it.</p>
+<p>In this short article, I explain why excluding zone.js is a good idea and how to deal with the consequences. The sample I use for this can be found in my <a href="https://github.com/manfredsteyer/angular-elements-dashboard/tree/noop-zone">github repo</a>. Make sure to use the branch <code>noop-zone</code>.</p>
+<h2 id="why-zonejs-might-be-a-bad-idea-for-custom-elements">Why zone.js might be a bad idea for Custom Elements</h2>
+<p>In general, we want our custom Elements to be as small as possible in terms of bundle size. The upcoming ngIvy view engine will help a lot with this goal as it produces more tree-shakable code and hence allows Angular blowing itself mostly away during the compilation.</p>
+<p>Another approach to shrink bundles is reusing Angular packages across several Angular Elements and the host application. After an enlightening discussion with Angular's <a href="https://twitter.com/robwormald">Rob Wormald</a>, I've created <a href="https://www.npmjs.com/package/ngx-build-plus">ngx-build-plus</a> -- a simple CLI extension that helps to implement this idea.</p>
+<p>However, in both cases we cannot get rid of <code>zone.js</code> which is used by Angular since it first days for change tracking. This library monkey patches a lot of browser objects to get informed about all events after which Angular needs to check the displayed components for changes.</p>
+<p>While this provides convenience in Angular application having such a dependency for a custom element is not desirable, especially when the hosting application is not Angular based: Not every consumer wants to monkey patch browser objects and in many cases <code>zone.js</code> is bigger than the custom element itself.</p>
+<h2 id="getting-rid-of-zonejs">Getting rid of zone.js</h2>
+<p>Getting rid of <code>zone.js</code> is the easiest part. Just set configure the noop zone (no operation zone) when bootstrapping the Angular application:</p>
+<pre class="hljs"><code><div>platformBrowserDynamic()
+   .bootstrapModule(
+       AppModule, { ngZone: <span class="hljs-string">'noop'</span> })
+   .catch(err =&gt; <span class="hljs-built_in">console</span>.log(err));
+</div></code></pre>
+<p>However, dealing with the consequences of removing <code>zone.js</code> isn't that easy as the consequence is triggering change detection manually.</p>
+<h2 id="triggering-change-detection-manually">Triggering Change Detection manually</h2>
+<p>For my demonstrations, I use a simple Angular component that displays three numeric values:</p>
+<pre class="hljs"><code><div>@Component({
+  [...]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> ExternalDashboardTileComponent {
+
+  @Input() a: <span class="hljs-built_in">number</span>;
+  @Input() b: <span class="hljs-built_in">number</span>;
+  @Input() c: <span class="hljs-built_in">number</span>;
+
+  more(): <span class="hljs-built_in">void</span> {
+    <span class="hljs-keyword">this</span>.a = <span class="hljs-built_in">Math</span>.round(<span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">100</span>);
+    <span class="hljs-keyword">this</span>.b = <span class="hljs-built_in">Math</span>.round(<span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">100</span>);
+    <span class="hljs-keyword">this</span>.c = <span class="hljs-built_in">Math</span>.round(<span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">100</span>);
+  }
+}
+</div></code></pre>
+<p>It also provides a <code>more</code> method that updates those values. For the sake of simplicity, I use random numbers here.</p>
+<p>The values are displayed in an table and the method is bound to the click event of a button:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"table table-condensed"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>A<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>{{a}}<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>B<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>{{b}}<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>C<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>{{c}}<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-default btn-sm"</span> (<span class="hljs-attr">click</span>)=<span class="hljs-string">"more()"</span>&gt;</span>More<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</div></code></pre>
+<p>When using <code>zone.js</code>, Angular is automatically performing change detection after the click event and hence updating the bound values. But without <code>zone.js</code> Angular is not aware of the click event. This means, we have to trigger change detection by hand.</p>
+<p>This can be accomplished by calling the <code>markForCheck</code> method of the current <code>ChangeDetectorRef</code>:</p>
+<pre class="hljs"><code><div>@Component({
+  [...]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> ExternalDashboardTileComponent {
+
+  @Input() a: <span class="hljs-built_in">number</span>;
+  @Input() b: <span class="hljs-built_in">number</span>;
+  @Input() c: <span class="hljs-built_in">number</span>;
+
+  <span class="hljs-keyword">constructor</span>(private cd: ChangeDetectorRef) {
+  }
+
+  more(): <span class="hljs-built_in">void</span> {
+    <span class="hljs-keyword">this</span>.a = <span class="hljs-built_in">Math</span>.round(<span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">100</span>);
+    <span class="hljs-keyword">this</span>.b = <span class="hljs-built_in">Math</span>.round(<span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">100</span>);
+    <span class="hljs-keyword">this</span>.c = <span class="hljs-built_in">Math</span>.round(<span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">100</span>);
+
+    <span class="hljs-keyword">this</span>.cd.markForCheck();
+  }
+
+}
+</div></code></pre>
+<p>As this is a very explicit approach, one can easily forget about calling the method at the right moment. Therefore I present an alternative in the next section.</p>
+<h2 id="push-pipe">Push-Pipe</h2>
+<p>A more declarative way for triggering change detection is using Observables. Every time prove a new value, a pipe can tell Angular to check for changes. While Angular comes with the <code>async</code> pipe for such cases, it also demands on <code>zone.js</code>.</p>
+<p>What we need is a tuned <code>async</code> pipe. A prototypical (!) one comes from <a href="https://github.com/Toxicable">Fabian Wiles</a> who is an active community member. He calls it <a href="https://raw.githubusercontent.com/Toxicable/angular/798ce0b5288c7a8b522d1ca710a4f64e427e931c/packages/common/src/pipes/push_pipe.ts">push pipe</a>.</p>
+<p>To use it, we need to introduce an Observable. In my simple, I put it directly into the component. In an more advanced case, it should be provided by a service instead. To be able to directly notify it, I'm using a <code>BehaviorSubject</code> too:</p>
+<pre class="hljs"><code><div>@Component({
+   [...]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> ExternalDashboardTileComponent <span class="hljs-keyword">implements</span> OnInit {
+
+  @Input() a: <span class="hljs-built_in">number</span>;
+  @Input() b: <span class="hljs-built_in">number</span>;
+  @Input() c: <span class="hljs-built_in">number</span>;
+
+  <span class="hljs-keyword">private</span> statsSubject = <span class="hljs-keyword">new</span> BehaviorSubject&lt;Stats&gt;(<span class="hljs-literal">null</span>);
+  <span class="hljs-keyword">public</span> stats$ = <span class="hljs-keyword">this</span>.statsSubject.asObservable();
+
+  [...]
+}
+</div></code></pre>
+<p>To get along with just one Observable for all three values, I group them with a class <code>Stats</code>:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">class</span> Stats {
+  <span class="hljs-keyword">constructor</span>(
+    readonly a: number,
+    readonly b: number,
+    readonly c: number
+  ) { }
+}
+</div></code></pre>
+<p>After Angular created the component, we have to publish the three numeric values for the first time:</p>
+<pre class="hljs"><code><div>ngOnInit(): <span class="hljs-built_in">void</span> {
+  <span class="hljs-keyword">this</span>.statsSubject.next(<span class="hljs-keyword">new</span> Stats(<span class="hljs-keyword">this</span>.a, <span class="hljs-keyword">this</span>.b, <span class="hljs-keyword">this</span>.c));
+}
+</div></code></pre>
+<p>After each modification, we have to do the same:</p>
+<pre class="hljs"><code><div>more(): <span class="hljs-built_in">void</span> {
+  <span class="hljs-keyword">this</span>.a = <span class="hljs-built_in">Math</span>.round(<span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">100</span>);
+  <span class="hljs-keyword">this</span>.b = <span class="hljs-built_in">Math</span>.round(<span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">100</span>);
+  <span class="hljs-keyword">this</span>.c = <span class="hljs-built_in">Math</span>.round(<span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">100</span>);
+
+  <span class="hljs-keyword">this</span>.statsSubject.next(<span class="hljs-keyword">new</span> Stats(<span class="hljs-keyword">this</span>.a, <span class="hljs-keyword">this</span>.b, <span class="hljs-keyword">this</span>.c));
+}
+</div></code></pre>
+<p>In the template, we can subscribe to the Observable with the new <code>push</code> pipe. In the next listing I'm using an ngIf for this. The as clause writes the received object into the <code>stats</code> template variable.</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"content"</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"stats$ | push as stats"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"height:200px;"</span>&gt;</span> 
+    <span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"table table-condensed"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>A<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>{{stats.a}}<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>B<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>{{stats.b}}<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>C<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>{{stats.c}}<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-default btn-sm"</span> (<span class="hljs-attr">click</span>)=<span class="hljs-string">"more()"</span>&gt;</span>More<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</div></code></pre>
+<p>Also, we can switch to OnPush now, as we are just relying on Observables and Immutables:</p>
+<pre class="hljs"><code><div>@Component({
+  [...],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> ExternalDashboardTileComponent <span class="hljs-keyword">implements</span> OnInit {
+    [...]
+}
+</div></code></pre>
+
+    </body>
+    </html>

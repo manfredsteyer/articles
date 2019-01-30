@@ -1,0 +1,56 @@
+ And when we want to compile to ES5, we need another polyfill for browsers that support the standard because it bases upon ES 2015.
+
+The second polyfill for browsers already supporting Custom Elements was copied over to the assets folder and directly referenced by an script tag in the ``index.html`` file:
+
+```html
+<script src="assets/native-shim.js"></script>
+```
+
+This solution was necessary because this polyfill crashes in Internet Explorer. If it was in the same bundle as the rest, this would prevent the execution of the application.
+
+
+
+
+
+## Excluding zone.js
+
+
+
+Normally, Angular leverages zone.js for change detection. It provides a lot of convenience by informing Angular about all browser events. To be capable of this, it's monkey-patching all browser objects. Especially, when we want to use several micro apps within a single page it can be desirable to avoid such a behavior. This would also lead to smaller bundle sizes.
+
+Beginning with Angular 5 we can exclude zone.js by setting the property ``ngZone`` to ``noop`` during bootstrapping:
+
+```typescript
+  platformBrowserDynamic().bootstrapModule(AppModule, { ngZone: 'noop' });
+``` 
+
+After this, we have to trigger change detection manually. But this is cumbersome and error-prone. There are some ideas to deal with this. A prototypical (!) one comes from [Fabian Wiles](https://github.com/Toxicable) who is an active community member. It uses a custom ``push`` pipe that triggers change detection when an observable yields a new value. It works similar to the ``async`` pipe but other than it ``push`` also works without zone.js:
+
+```typescript
+@Component({
+  selector: 'client-a-widget',
+  template: `
+    <div id="widget">
+        <h1>Client-A Widget</h1>
+        <input [formControl]="control"> {{ value$ | push }}
+    </div>
+  `,
+  styles: [`
+        #widget { padding:10px; border: 2px darkred dashed }
+  `],
+  encapsulation: ViewEncapsulation.Native
+})
+export class ClientAWidgetComponent implements OnInit {
+    control = new FormControl();
+    value$: Observable<string>;
+  
+    ngOnInit(): void {
+      this.value$ = this.control.valueChanges;
+    }
+}
+```
+
+
+
+
+https://raw.githubusercontent.com/Toxicable/angular/798ce0b5288c7a8b522d1ca710a4f64e427e931c/packages/common/src/pipes/push_pipe.ts
